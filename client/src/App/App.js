@@ -1,5 +1,6 @@
 import React from "react";
 import "./App.css";
+import Home from '../Pages/Home'
 
 const App = () => {
   const [data, setData] = React.useState(null);
@@ -13,6 +14,7 @@ const App = () => {
   return (
     <div className="App">
       <header className="App-header">
+        <Home/>
         <p>{!data ? "Loading..." : data}</p>
       </header>
     </div>
