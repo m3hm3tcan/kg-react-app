@@ -1,9 +1,13 @@
 import React from "react";
-import "./App.css";
+import "./Home.css";
 
 const Home = () => {
 
     return (
-        <div />
+        <div >
+            This is home page
+        </div>
     )
 }
+
+export default Home;
