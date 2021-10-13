@@ -9,6 +9,7 @@ const app = express();
 
 app.use(express.static(path.resolve(__dirname, '../client/build')));
 
+app.use(express.json());
 // Handle GET requests to /api route
 app.use('/api', routes);
   
