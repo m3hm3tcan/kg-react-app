@@ -1,4 +1,5 @@
 import React from "react";
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import "./App.css";
 import Home from '../Pages/Home'
 
@@ -14,9 +15,14 @@ const App = () => {
   return (
     <div className="App">
       <header className="App-header">
-        <Home/>
-        <p>{!data ? "Loading..." : data}</p>
       </header>
+   
+        <BrowserRouter>
+          <Switch>
+            <Route exact path='/' component={Home} />
+          </Switch>
+        </BrowserRouter>
+       
     </div>
   );
 

@@ -20,10 +20,10 @@ router.get("/getAllCountry", async (req, res) => {
 
 router.get("/getCountryByName", async (req, res) => {
   const { query } = req;
-  if (query.conutryName === null || query.conutryName === undefined) return res.status(400).json({ message: 'Bad request, Country name is missing!' });
+  if (query.counrtyName === null || query.counrtyName === undefined) return res.status(400).json({ message: 'Bad request, Country name is missing!' });
   try {
     const response = await axios({
-      url: `${process.env.API_URL}/name/${query.conutryName}?fullText=true&fields=name`,
+      url: `${process.env.API_URL}/name/${query.counrtyName}?fullText=true&fields=name,capital,currencies`,
       method: "get",
     });
     res.status(200).json(response.data);
