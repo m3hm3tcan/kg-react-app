@@ -26,7 +26,10 @@ router.get("/getCountryByName", async (req, res) => {
       url: `${process.env.API_URL}/name/${query.counrtyName}?fullText=true&fields=name,capital,currencies`,
       method: "get",
     });
-    res.status(200).json(response.data);
+    if(response.data.status !== 404)
+      res.status(200).json(response.data);
+    else
+      res.status(404).json(null);
   } catch (err) {
     res.status(500).json({ message: err });
   }
@@ -42,9 +45,11 @@ router.get("/getListOfCountry", async (req, res) => {
   const response = await axios.all(promises).then(result => {
     let conutryList = [];
     result.forEach(arrayItem => {
-      arrayItem.data.forEach(conutry => {
-        conutryList.push(conutry.name);
-      })
+      if(arrayItem.data.status !== 404){
+        arrayItem.data.forEach(conutry => {
+          conutryList.push(conutry.name);
+        })
+      }
     });
     res.status(200).json(conutryList)
   });
