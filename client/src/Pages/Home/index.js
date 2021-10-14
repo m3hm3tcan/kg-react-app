@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./Home.css";
 import CountrySearch from '../../Components/CountrySearch'
+import AllCountries from '../../Components/AllCountries'
 
 const Home = () => {
     const [country,setCoutry] = useState(null);
