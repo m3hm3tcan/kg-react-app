@@ -18,7 +18,7 @@ const CountrySearch = ({ handleSearch, country }) => {
                 <p>Get exact coutry name,capital city and currencies by searching from input filed!</p>
             </div>
             <div className="form-group">
-                <input type="text" className="search-box" value={seachText} onChange={handleChange} placeholder="Search here" />
+                <input type="text" className="form-control search-box" value={seachText} onChange={handleChange} placeholder="Search here" />
             </div>
             <div className="form-group">
                 <button type="button" className="btn btn-primary" onClick={handleClick}>Search</button>
