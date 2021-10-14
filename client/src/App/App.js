@@ -1,8 +1,9 @@
-import React from "react";
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import "./App.css";
+import React from "react"
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import "./App.css"
 import Home from '../Pages/Home'
-import Registration from "../Pages/Registration";
+import Registration from "../Pages/Registration"
+import Login from '../Pages/Login'
 
 const App = () => {
   const [data, setData] = React.useState(null);
@@ -22,6 +23,7 @@ const App = () => {
           <Switch>
             <Route exact path='/' component={Home} />
             <Route exact path='/sign-up' component={Registration} />
+            <Route exact path='/login' component={Login} />
           </Switch>
         </BrowserRouter>
        
