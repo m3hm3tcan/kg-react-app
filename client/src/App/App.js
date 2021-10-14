@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import "./App.css";
 import Home from '../Pages/Home'
+import Registration from "../Pages/Registration";
 
 const App = () => {
   const [data, setData] = React.useState(null);
@@ -20,6 +21,7 @@ const App = () => {
         <BrowserRouter>
           <Switch>
             <Route exact path='/' component={Home} />
+            <Route exact path='/sign-up' component={Registration} />
           </Switch>
         </BrowserRouter>
        
