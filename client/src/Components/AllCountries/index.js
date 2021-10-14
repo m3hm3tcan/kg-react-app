@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from "react";
-import "./AllCountries.css";
 
 const AllCountries = ({ countryList }) => {
     const [searchText, setSearchText] = useState('');
     const [filteredList, setFilteredList] = useState(countryList);
     const [isOpen, setIsOpen]= useState(false);
+    
+    useEffect(()=>{
+        setFilteredList(countryList)
+    },[countryList])
+    
     const handleChange = (event) => {
         
         setSearchText(event.target.value)
@@ -22,7 +26,7 @@ const AllCountries = ({ countryList }) => {
             </div>
 
             <div className="row">
-                <div class="col-sm-3">
+                <div className="col-sm-3">
                     <input type="text" className="form-control" id="coutry" value={searchText} onChange={handleChange} placeholder="Filter here" />
                 </div>
                 <div className="col-sm-3">

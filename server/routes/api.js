@@ -36,10 +36,12 @@ router.get("/getCountryByName", async (req, res) => {
 });
 
 router.get("/getListOfCountry", async (req, res) => {
-  const { body } = req;
+  const { query } = req;
   let promises = [];
-  for (let i = 0; i < body.conutryNames.length; i++) {
-    promises.push(axios.get(`${process.env.API_URL}/name/${body.conutryNames[i]}?fields=name`));
+  const listOfCountry = query.conutryNames.split(",");
+
+  for (let i = 0; i < listOfCountry.length; i++) {
+    promises.push(axios.get(`${process.env.API_URL}/name/${listOfCountry[i]}?fields=name`));
   }
 
   const response = await axios.all(promises).then(result => {
