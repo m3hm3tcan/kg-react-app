@@ -19,7 +19,6 @@ const Home = () => {
 
     const handleSearchByName = (counrtyName) => {
         setCoutry(null);
-        console.log(counrtyName);
         fetch(`/api/getCountryByName?counrtyName=${counrtyName}`)
             .then((res) => res.json())
             .then((data) => {

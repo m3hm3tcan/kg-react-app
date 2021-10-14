@@ -17,7 +17,6 @@ const CountryListByArray = ({ handleSearch, countryArrayList }) => {
         if (temp !== '' && searchText !== '') {
             setConutryList(`${conutryList},${searchText}`);
         }
-        console.log(conutryList);
         setSearchText('')
     }
 
