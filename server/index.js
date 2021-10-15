@@ -2,6 +2,7 @@ const express = require("express");
 const path = require('path');
 const routes = require('./routes/api');
 const userRoutes = require('./routes/userApi');
+const gameRoutes = require('./routes/gameApi');
 require('dotenv').config();
 
 const PORT = process.env.PORT || 3001;
@@ -17,7 +18,8 @@ app.use(express.json());
 // Handle GET requests to /api route
 app.use('/api', routes);
 app.use('/userapi', userRoutes);
-  
+app.use('/gameapi', gameRoutes);
+
 app.use((err, req, res, next) => {
   console.log(err);
   next();

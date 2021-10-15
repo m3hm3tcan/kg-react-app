@@ -22,6 +22,7 @@ router.post('/register', async (req, res) => {
                 name: req.body.name,
                 email: req.body.email,
                 password: newPass,
+                totalCoins: 20,
             }, {
                 headers:
                 {
@@ -42,7 +43,7 @@ router.post('/login', async (req, res) => {
         //local mongo db user search
         //const user = await User.findOne({ email: req.body.email })
         const user = await axios({
-            url: `https://lividb-380f.restdb.io/rest/kg-test-table?q={"email":"mj@text.com"}`,
+            url: `https://lividb-380f.restdb.io/rest/kg-test-table?q={"email":"${req.body.email}"}`,
             method: "get",
             cache: 'no-cache',
             headers: {
