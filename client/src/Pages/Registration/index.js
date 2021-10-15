@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import RegistrationForm from '../../Components/RegistrationForm'
+import { useHistory } from 'react-router-dom'
 
 const Registration = () => {
-
+    const history = useHistory();
+    
     const handleFormSubmit = (userInfo) => {
         fetch(`/userapi/register`, {
             headers: {
@@ -20,7 +22,8 @@ const Registration = () => {
         })
             .then((res) => res.json())
             .then((data) => {
-                console.log( data);
+                if(data.message === "User registered!")
+                    history.push('/')
             });
     }
 
