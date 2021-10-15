@@ -37,7 +37,6 @@ This repository is built on top of Express and React, you will find other suppor
 - Mongo local DB min v4.0
 
 ##### Steps
-- prerequest 
 1. Clone repo into your pc
 2. Run npm install for both `server` and `cline` project
 3. Go into `client` folder and run npm command `npm run build` ( this steps will create build folder)
