@@ -30,9 +30,10 @@ const CountryListByArray = ({ handleSearch, countryArrayList }) => {
                 <h3>Country Seacrh by String Array</h3>
             </div>
             <div className="form-group">
-                <input type="text" className=" search-box" value={searchText} onChange={handleChange} placeholder="Add string here" />
+                <input type="text" className="form-control search-box" value={searchText} onChange={handleChange} placeholder="Add string here" />
                 <button type="button" className="btn btn-primary" onClick={handleAdd}>Add in List</button>
             </div>
+            <br/>
             <div className="form-group">
                 <button type="button" className="btn btn-primary" onClick={handleSearchByList}>Search</button>
             </div>

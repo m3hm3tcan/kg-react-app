@@ -23,3 +23,11 @@ code {
   padding-left:25%;
   padding-right:25%;
 }
+
+.set-right{
+  float: right;
+}
+
+.sign-up-btn{
+  margin-left:10px;
+}
