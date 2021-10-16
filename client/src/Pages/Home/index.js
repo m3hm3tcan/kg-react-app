@@ -6,6 +6,7 @@ import CountrySearch from '../../Components/CountrySearch'
 import AllCountries from '../../Components/AllCountries'
 import CountryListByArray from '../../Components/CountryListByArray'
 import Header from '../../Components/Header'
+import { getAllConutries, getConutryByName, getCountryListByStringArray } from '../../Services/DataServices'
 
 const Home = () => {
     const history = useHistory()
@@ -21,35 +22,29 @@ const Home = () => {
             if (!user) {
                 localStorage.removeItem('token')
                 history.replace('/')
-            }else{
+            } else {
                 setUserName(user.name)
             }
         }
     }, [])
 
     useEffect(() => {
-        fetch(`/api/getAllCountry`)
-            .then((res) => res.json())
-            .then((data) => {
-                setConutryList(data);
-            });
+        getAllConutries().then((data) => {
+            setConutryList(data);
+        });
     }, [])
 
     const handleSearchByName = (counrtyName) => {
         setCoutry(null);
-        fetch(`/api/getCountryByName?counrtyName=${counrtyName}`)
-            .then((res) => res.json())
-            .then((data) => {
-                setCoutry(data);
-            });
+        getConutryByName(counrtyName).then((data) => {
+            setCoutry(data);
+        });
     }
 
     const handleSearchByArray = (counrtyNameList) => {
         setConutryArrayList([]);
         if (counrtyNameList !== '') {
-            fetch(`/api/getListOfCountry?conutryNames=${counrtyNameList}`)
-                .then((res) => res.json())
-                .then((data) => {
+            getCountryListByStringArray(counrtyNameList).then((data) => {
                     setConutryArrayList(data);
                 });
         }
@@ -57,7 +52,7 @@ const Home = () => {
 
     return (
         <div >
-            <Header user={userName}/>
+            <Header user={userName} />
             <br />
             <CountrySearch handleSearch={handleSearchByName} country={country} />
             <br />
