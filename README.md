@@ -40,11 +40,9 @@ This repository is built on top of Express and React, you will find other suppor
 1. Clone repo into your pc
 2. Run npm install for both `server` and `cline` project
 3. Go into `client` folder and run npm command `npm run build` ( this steps will create build folder)
-4. Go to root folder and run npm command `npm start` 
+4. Go into server folder and run npm command `npm start` 
 5. Open `localhost:3001` and test the application need to redirect you into `login` page.
 
-## Project Structure
-![image](https://user-images.githubusercontent.com/16703521/137472371-54b78f37-bb10-469c-9217-22c8e6731ebd.png)
 
 ## Test client app
 #### on local 
@@ -54,5 +52,14 @@ When you register the user, user information will be store in restDB cloud datab
 After succesfully register operation the application will redirect to login page. Please provide information to login into system.
 When you succesfully login application will open Home page and you can do futher opeartion such as county search by name, all county list and filter and county search by string array.
 
+Also there is a small game you can play with clicking `I want to play a game` button
+
 #### on Web 
   Plase visit my test page : https://kg-reacttest-app.herokuapp.com/
+ 
+## What we can add later in the project 
+- State management with Redux
+- Improve error management
+- Component test with JEST
+- CI/CD pipeline with Github Action
+- Secure sensitive information ( secret keys, clientid etc. ) into github secrets
