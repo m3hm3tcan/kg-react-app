@@ -4,6 +4,7 @@ import "./App.css"
 import Home from '../Pages/Home'
 import Registration from "../Pages/Registration"
 import Login from '../Pages/Login'
+import Game from '../Pages/Game'
 
 const App = () => {
   const [data, setData] = React.useState(null);
@@ -24,6 +25,7 @@ const App = () => {
             <Route exact path='/' component={Login} />
             <Route exact path='/sign-up' component={Registration} />
             <Route exact path='/home' component={Home} />
+            <Route exact path='/play' component={Game} />
            
           </Switch>
         </BrowserRouter>

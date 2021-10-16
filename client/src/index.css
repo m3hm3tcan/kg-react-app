@@ -12,22 +12,70 @@ code {
     monospace;
 }
 
-.container{
+.container {
     border : 1px solid rgb(52, 98, 248);
     border-radius: 5px;
     padding: 15px 15px 15px 15px;
 }
 
-.form-container{
+.form-container {
   margin-top:10%;
   padding-left:25%;
   padding-right:25%;
 }
 
-.set-right{
-  float: right;
+.nav-group{
+  display: flexbox;
 }
 
-.sign-up-btn{
+.sign-up-btn {
   margin-left:10px;
+}
+
+.center-text {
+  text-align: center;
+  padding-top:30px;
+  padding-bottom: 30px;
+}
+
+.game-box {
+  border: 2px solid rgba(221, 0, 0, 0.473);
+  border-radius: 5px !important;
+  margin-left: 3px;
+  min-height: 100px;
+  min-width: 100px;
+}
+
+.firiut-box {
+  justify-content: center;
+  padding-top: 40%;
+  font-weight: bold;
+  text-align: center;
+}
+
+.banana {
+  color:rgb(202, 206, 0);
+}
+
+.cherry {
+  color:rgb(158, 4, 4);
+}
+
+.apple {
+  color:rgb(0, 150, 7);
+}
+
+.lemon {
+  color:rgb(255, 239, 91);
+}
+
+.furiut-shadow {
+  text-shadow: black 0.1em 0.1em 0.2em;
+  font-size:large;
+}
+
+.credit-text{
+  font-weight: bold;
+  color: rgb(158, 4, 4);
+  font-size: larger;
 }

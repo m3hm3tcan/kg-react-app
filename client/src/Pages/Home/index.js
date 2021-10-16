@@ -25,6 +25,9 @@ const Home = () => {
             } else {
                 setUserName(user.name)
             }
+        }else{
+            localStorage.removeItem('token')
+            history.replace('/')
         }
     }, [])
 
