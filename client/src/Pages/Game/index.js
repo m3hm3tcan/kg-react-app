@@ -1,30 +1,30 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from 'react-router-dom'
-import jwt from 'jsonwebtoken'
 import SlotMachine from '../../Components/SlotMachine'
-import { doPlay } from '../../Services/DataServices'
+import { doPlay, isAlreadyLogged, getCreditById } from '../../Services/DataServices'
 import Header from '../../Components/Header'
 
 const Game = () => {
     const history = useHistory()
     const [isLoading, setIsLoading] = useState(false);
-    const [credit, setCredit] = useState(0);
     const [user, setUser] = useState(null);
+    const [gameResult, setGameResult] = useState({
+        currentPrize:0,
+        wonPrize:0,
+    })
     const [spinResult, setSpinResult] = useState(['ready', 'ready', 'ready']);
 
     useEffect(()=>{
-        const token = localStorage.getItem('token')
-        if (token) {
-            const user = jwt.decode(token)
-            if (!user) {
-                localStorage.removeItem('token')
-                history.replace('/')
-            } else {
-                setUser(user)
-                setCredit(user.totalCoins)
-                //here add api to collect last credit from DB
-            }
-        }else{
+        const user = isAlreadyLogged()
+        if (user) {
+            setUser(user)
+            getCreditById(user._id).then((data) => {
+                setGameResult({
+                    currentPrize: data.totalCoins,
+                    wonPrize: 0
+                })
+            })
+        } else {
             localStorage.removeItem('token')
             history.replace('/')
         }
@@ -32,8 +32,11 @@ const Game = () => {
 
     const handlePlay = () => {
         setIsLoading(true);
-        doPlay(user.email).then((data) => {
-            setCredit(data.currentPrize);
+        doPlay().then((data) => {
+            setGameResult({
+                currentPrize: data.currentPrize,
+                wonPrize: data.wonPrize
+            })
             let spin = data.prizeText.split('-')
             setSpinResult(spin);
             setIsLoading(false);
@@ -43,7 +46,7 @@ const Game = () => {
     return (
         <div>
             <Header user={user ? user.name : '' } />
-            <SlotMachine credit={credit} firutis={spinResult} isLoading={isLoading} handlePlay={handlePlay} />
+            <SlotMachine credit={gameResult} firutis={spinResult} isLoading={isLoading} handlePlay={handlePlay} />
         </div>
     )
 }

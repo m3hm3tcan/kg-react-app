@@ -7,13 +7,6 @@ import Login from '../Pages/Login'
 import Game from '../Pages/Game'
 
 const App = () => {
-  const [data, setData] = React.useState(null);
-
-  React.useEffect(() => {
-    fetch("/api/getTestMessage")
-      .then((res) => res.json())
-      .then((data) => setData(data.message));
-  }, []);
 
   return (
     <div className="App">

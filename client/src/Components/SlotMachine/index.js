@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { useHistory } from 'react-router-dom'
+import React from "react";
 
 const SlotMachine = ({ credit, firutis, handlePlay, isLoading }) => {
 
@@ -11,7 +10,8 @@ const SlotMachine = ({ credit, firutis, handlePlay, isLoading }) => {
 
             <div className="row">
                 <div className="center-text">
-                    <h3> You have <span class="credit-text">{credit}</span> coins </h3>
+                    <h3> You have <span class="credit-text">{credit.currentPrize}</span> credit! </h3>
+                    <p>You won <span class="credit-text">{credit.wonPrize}</span> coins</p>
                 </div>
             </div>
             <div className="row">
@@ -33,7 +33,7 @@ const SlotMachine = ({ credit, firutis, handlePlay, isLoading }) => {
             </div>
             <div className="row">
                 <div className="center-text">
-                    <button type="button" class={`btn btn-danger ${isLoading ? "disabled" : ""}`} onClick={handleClick}>I am feeling Luck!</button>
+                    <button type="button" class={`btn btn-danger ${isLoading ? "disabled" : ""}`} onClick={handleClick}>I am feeling Lucky!</button>
                 </div>
             </div>
         </div>

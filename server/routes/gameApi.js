@@ -2,11 +2,16 @@ const express = require('express');
 const router = express.Router();
 const axios = require("axios");
 const utility = require('../utilities/utility');
+const jwt = require('jsonwebtoken')
 
 router.get('/playGame', async (req, res) => {
     try {
+
+        let token = req.headers.authorization.replace('Bearer ', '')
+        const userInfo = jwt.decode(token)
+
         const user = await axios({
-            url: `https://lividb-380f.restdb.io/rest/kg-test-table?q={"email":"${req.query.email}"}`,
+            url: `https://lividb-380f.restdb.io/rest/kg-test-table?q={"_id":"${userInfo._id}"}`,
             method: "get",
             cache: 'no-cache',
             headers: {
@@ -50,7 +55,8 @@ router.get('/playGame', async (req, res) => {
 
                 res.json({
                     currentPrize: currentPrize,
-                    prizeText: prizeText
+                    prizeText: prizeText,
+                    wonPrize: wonPrize
                 });
             } else {
                 res.json({ message: "User has no enough coins!", user: null });
@@ -62,5 +68,28 @@ router.get('/playGame', async (req, res) => {
     }
 });
 
+router.get('/getCredit', async (req, res) => {
+
+    const user = await axios({
+        url: `https://lividb-380f.restdb.io/rest/kg-test-table?q={"_id":"${req.query.id}"}`,
+        method: "get",
+        cache: 'no-cache',
+        headers: {
+            'Accept': 'application/json',
+            'x-apikey': `${process.env.CLOUD_DB_KEY}`,
+            'Content-Type': 'application/json'
+        }
+    });
+
+    if (user.status !== 200) { throw response }
+    if (user.data.length > 0) {
+        res.json({
+            totalCoins: user.data[0].totalCoins
+        });
+    }else{
+        res.json({ message: "User not found!", totalCoins: null });
+    }
+
+})
 
 module.exports = router;
