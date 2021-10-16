@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from 'react-router-dom'
+import { userLogin } from '../../Services/DataServices'
 
 const Login = () => {
     const history = useHistory();
@@ -11,25 +12,18 @@ const Login = () => {
 
     const onSubmit = (e) => {
         e.preventDefault();
-        fetch(`/userapi/login`, {
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            method: "POST",
-            body: JSON.stringify({ email: loginUser.email, password: loginUser.password })
-        })
-            .then((res) => res.json())
+        userLogin(loginUser)
             .then((data) => {
                 if (data.user) {
                     setIsSuccess(true)
                     localStorage.setItem('token', data.user)
                     history.push('/home')
-                }else{
+                } else {
                     setIsSuccess(false);
                 }
+            }).catch((err) => {
+                setIsSuccess(false);
             });
-        
     }
 
     const formValChange = (e) => {
@@ -73,7 +67,9 @@ const Login = () => {
                         onChange={formValChange}
                     />
                 </div>
-                {!isSuccess && <span className="invalid-feedback">Login Failed!</span>}
+                {!isSuccess && <div class="alert alert-danger" role="alert">
+                    Login faild!
+                </div>}
                 <br />
                 <button type="submit" className="btn  btn-primary">Login</button>
                 <span className=" sign-up-btn" > If you don't have an account please <a href='/sign-up'>sign up</a></span>
