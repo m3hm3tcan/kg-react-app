@@ -42,3 +42,14 @@ export const userRegisteration = async (userInfo) => {
         )
     }).then((res) => res.json())
 }
+
+export const doPlay = async (userEmail) => {
+    return await fetch(`/gameapi/playGame?email=${userEmail}`, {
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        method: "GET"
+    }).then((res) => res.json())
+}
+

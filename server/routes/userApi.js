@@ -61,7 +61,8 @@ router.post('/login', async (req, res) => {
             if (user.data[0] && isValidPassword) {
                 const token = jwt.sign({
                     email: user.data[0].email,
-                    name: user.data[0].name
+                    name: user.data[0].name,
+                    totalCoins: user.data[0].totalCoins
                 }, process.env.SERCERT_KEY)
                 res.json({ message: "Login Succesful!", user: token });
             } else {

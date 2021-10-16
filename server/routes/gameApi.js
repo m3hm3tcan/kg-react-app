@@ -6,7 +6,7 @@ const utility = require('../utilities/utility');
 router.get('/playGame', async (req, res) => {
     try {
         const user = await axios({
-            url: `https://lividb-380f.restdb.io/rest/kg-test-table?q={"email":"${req.body.email}"}`,
+            url: `https://lividb-380f.restdb.io/rest/kg-test-table?q={"email":"${req.query.email}"}`,
             method: "get",
             cache: 'no-cache',
             headers: {
