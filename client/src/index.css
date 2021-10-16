@@ -79,3 +79,17 @@ code {
   color: rgb(158, 4, 4);
   font-size: larger;
 }
+
+.search-list {
+  padding-top:5px;
+  font-size: small;
+  font-family:Verdana, Geneva, Tahoma, sans-serif
+}
+
+.test {
+  margin-top: 20% !important;
+  margin-left: 40% !important;
+  display: inline !important;
+  position: absolute !important;
+  z-index: 10;
+}

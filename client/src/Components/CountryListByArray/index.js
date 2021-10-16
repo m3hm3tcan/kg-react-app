@@ -22,6 +22,7 @@ const CountryListByArray = ({ handleSearch, countryArrayList }) => {
 
     const handleSearchByList = () => {
         handleSearch(conutryList);
+        setConutryList('');
     }
 
     return (
@@ -32,6 +33,7 @@ const CountryListByArray = ({ handleSearch, countryArrayList }) => {
             <div className="form-group">
                 <input type="text" className="form-control search-box" value={searchText} onChange={handleChange} placeholder="Add string here" />
                 <button type="button" className="btn btn-primary" onClick={handleAdd}>Add in List</button>
+                {conutryList !=='' && <p className="search-list">Search List: {conutryList} </p>}
             </div>
             <br/>
             <div className="form-group">

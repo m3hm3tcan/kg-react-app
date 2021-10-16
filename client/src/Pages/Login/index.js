@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory } from 'react-router-dom'
 import { userLogin } from '../../Services/DataServices'
+import { isAlreadyLogged } from "../../Services/DataServices";
 
 const Login = () => {
     const history = useHistory();
@@ -9,6 +10,16 @@ const Login = () => {
         password: ''
     })
     const [isSuccess, setIsSuccess] = useState(true)
+
+    useEffect(() => {
+        const user = isAlreadyLogged()
+        if (user) {
+            history.replace('/home')
+        } else {
+            localStorage.removeItem('token')
+            history.replace('/')
+        }
+    }, [])
 
     const onSubmit = (e) => {
         e.preventDefault();
