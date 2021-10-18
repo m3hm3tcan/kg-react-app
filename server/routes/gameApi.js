@@ -53,18 +53,18 @@ router.get('/playGame', async (req, res) => {
                         },
                     });
 
-                res.json({
+                res.status(200).json({
                     currentPrize: currentPrize,
                     prizeText: prizeText,
                     wonPrize: wonPrize
                 });
             } else {
-                res.json({ message: "User has no enough coins!", user: null });
+                res.status(200).json({ message: "User has no enough coins!", user: null });
             }
         }
-        res.json({ message: "User not found!", user: null });
+        res.status(400).json({ message: "User not found!", user: null });
     } catch (err) {
-        res.json({ message: err });
+        res.status(500).json({ message: err });
     }
 });
 
@@ -83,11 +83,11 @@ router.get('/getCredit', async (req, res) => {
 
     if (user.status !== 200) { throw response }
     if (user.data.length > 0) {
-        res.json({
+        res.status(200).json({
             totalCoins: user.data[0].totalCoins
         });
     }else{
-        res.json({ message: "User not found!", totalCoins: null });
+        res.status(400).json({ message: "User not found!", totalCoins: null });
     }
 
 })

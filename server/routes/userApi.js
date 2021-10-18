@@ -4,9 +4,15 @@ const axios = require("axios");
 const User = require("../models/user.model")
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
+const dataController = require('../contoller/dataController')
 
 router.post('/register', async (req, res) => {
     try {
+
+        if (!dataController.registrationDataControl(req.body)) { 
+            return res.status(400).json({ message: "Incorrect User data!" }) 
+        }
+
         const newPass = await bcrypt.hash(req.body.password, 10)
 
         // Local MONGO DB user creation...
@@ -32,9 +38,9 @@ router.post('/register', async (req, res) => {
                 },
             });
 
-        res.json({ message: "User registered!" });
+        res.status(200).json({ message: "User registered!" });
     } catch (err) {
-        res.json({ message: "Dublicate User!" });
+        res.status(500).json({ message: "Dublicate User!" });
     }
 });
 
@@ -53,9 +59,9 @@ router.post('/login', async (req, res) => {
             }
         });
 
-        if(user.status !== 200){throw response}
-        
-        if(user.data.length > 0 ){
+        if (user.status !== 200) { throw response }
+
+        if (user.data.length > 0) {
             const isValidPassword = await bcrypt.compare(req.body.password, user.data[0].password)
 
             if (user.data[0] && isValidPassword) {
@@ -65,14 +71,14 @@ router.post('/login', async (req, res) => {
                     name: user.data[0].name,
                     totalCoins: user.data[0].totalCoins
                 }, process.env.SERCERT_KEY)
-                res.json({ message: "Login Succesful!", user: token });
+                res.status(200).json({ message: "Login Succesful!", user: token });
             } else {
-                res.json({ message: "Error!", user: null });
+                res.status(400).json({ message: "Error!", user: null });
             }
-        }        
-        res.json({ message: "User Not Found!", user: null });
+        }
+        res.status(400).json({ message: "User Not Found!", user: null });
     } catch (err) {
-        res.json({ message: err });
+        res.status(500).json({ message: err });
     }
 });
 
