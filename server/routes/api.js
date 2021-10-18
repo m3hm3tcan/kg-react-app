@@ -3,7 +3,7 @@ const router = express.Router();
 const axios = require("axios");
 
 router.get('/getTestMessage', (req, res, next) => {
-  res.json({ message: "Hello from serverdddd!" });
+  res.status(200).json({ message: "Hello from serverdddd!" });
 });
 
 router.get("/getAllCountry", async (req, res) => {
